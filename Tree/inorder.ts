@@ -1,9 +1,8 @@
 import TreeNode from '../model/TreeNode';
 /**
- * 中序遍历    左中右
- * @param root
- * @param result
- * @returns
+ * 94. 二叉树的中序遍历  easy
+ * @link https://leetcode-cn.com/problems/binary-tree-inorder-traversal/
+ * @type easy
  */
 
 /**
