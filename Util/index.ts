@@ -1,3 +1,4 @@
+import { ListNode } from './../model/ListNode';
 import TreeNode from '../model/TreeNode';
 
 export function getTree(): TreeNode {
@@ -20,4 +21,43 @@ export function getTree(): TreeNode {
   root.left = left1;
   root.right = right2;
   return root;
+}
+
+// export function getTree(arr: number[]) {
+
+//   const root:TreeNode|null = null
+
+//   arr.forEach(item => {
+//     if (!root) {
+//       root = new TreeNode(item)
+//     }
+
+//   })
+
+// }
+
+export function getLinkArr(listNode: ListNode | null): number[] {
+  const result = [];
+  if (listNode != null) {
+    while (listNode != null) {
+      result.push(listNode.val);
+      listNode = listNode.next;
+    }
+  }
+  return result;
+}
+
+export function getLinkList(arr: number[]): ListNode | null {
+  let result: ListNode | null = null;
+  let head: ListNode | null = null;
+  arr.forEach((item) => {
+    if (!result) {
+      head = result = new ListNode(item);
+    } else {
+      result.next = new ListNode(item);
+      result = result.next;
+    }
+  });
+
+  return head;
 }
