@@ -1,6 +1,7 @@
 import { ListNode } from './../model/ListNode';
 import TreeNode from '../model/TreeNode';
 import LRUCache from '../LinkList/LRU';
+import LRUCacheStack from '../LinkList/LRU_stack';
 
 /**
  * 构造一颗二叉树，节点是模拟出来的，暂时固定
@@ -141,13 +142,18 @@ export function getInterLink(
 
 export function getLRUResult(
   operate: ('LRUCache' | 'get' | 'put')[],
-  params: number[][]
+  params: number[][],
+  useStack: boolean = false
 ): (number | null)[] {
-  let lru: LRUCache;
+  let lru: LRUCache|LRUCacheStack;
   let result: (null | number)[] = [];
   operate.forEach((op, index) => {
     if (op == 'LRUCache') {
-      lru = new LRUCache(params[index][0]);
+      if (useStack) {
+        lru = new LRUCacheStack(params[index][0]);
+      } else { 
+        lru = new LRUCache(params[index][0]);
+      }
       result.push(null);
     } else if (op == 'get') {
       result.push(lru.get(params[index][0]));
