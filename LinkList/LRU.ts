@@ -1,3 +1,9 @@
+/**
+ * 146. LRU 缓存机制
+ * https://leetcode-cn.com/problems/lru-cache/
+ */
+  
+
 class LinkNode {
   next: LinkNode | null = null;
   prev: LinkNode | null = null;
