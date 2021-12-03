@@ -30,3 +30,10 @@ export function sortArray(nums: number[]): number[] {
   return sortArray(left).concat(mid, sortArray(right))
 
 };
+
+
+
+
+
+
+
