@@ -41,3 +41,16 @@ export function reverseList2(head: ListNode | null): ListNode | null {
 
   return lastNode; //必须总是返回最后一个节点，因为最后一个节点就是翻转后的头结点
 }
+
+
+//自测
+function reverseList3(head: ListNode | null): ListNode | null {
+  let prev = null
+  while (head != null) {
+    const next = head.next
+    head.next = prev
+    prev = head
+    head = next
+  }
+  return prev
+}

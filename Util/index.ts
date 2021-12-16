@@ -1,3 +1,4 @@
+import { RandomNode } from './../model/RandomNode';
 import { ListNode } from './../model/ListNode';
 import TreeNode from '../model/TreeNode';
 import LRUCache from '../LinkList/LRU';
@@ -145,13 +146,13 @@ export function getLRUResult(
   params: number[][],
   useStack: boolean = false
 ): (number | null)[] {
-  let lru: LRUCache|LRUCacheStack;
+  let lru: LRUCache | LRUCacheStack;
   let result: (null | number)[] = [];
   operate.forEach((op, index) => {
     if (op == 'LRUCache') {
       if (useStack) {
         lru = new LRUCacheStack(params[index][0]);
-      } else { 
+      } else {
         lru = new LRUCache(params[index][0]);
       }
       result.push(null);
@@ -163,4 +164,40 @@ export function getLRUResult(
     }
   });
   return result;
+}
+
+
+type MyNumber = [number, null | number]
+export function getRandomLink(arr: (MyNumber)[]) {
+
+ 
+  const map: Record<number, RandomNode> = {}
+  for (let i = 0; i < arr.length; i++) {
+
+    if (arr[i][0] != null) {
+
+      let node = new RandomNode(arr[i][0])
+      map[node.val] = node
+    }
+
+
+  }
+  let prev
+  for (let i = 0; i < arr.length; i++) {
+    
+    if (arr[i][1] != null) {
+      let node = map[arr[i][1]!]
+      if (node) { 
+
+        map[arr[i][0]].random = node
+      }
+    }
+    if (!prev) {
+      prev = map[arr[i][0]]
+    } else { 
+      prev.next = map[arr[i][0]]
+    }
+  }
+  return map[arr[0][0]]
+
 }
