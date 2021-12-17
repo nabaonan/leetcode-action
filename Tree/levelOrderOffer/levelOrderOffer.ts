@@ -6,7 +6,7 @@
  * @returns 
  */
 
-import TreeNode from "../model/TreeNode"
+import TreeNode from "../../model/TreeNode"
 
 export function levelOrder(root: TreeNode | null): number[] {
   /**
