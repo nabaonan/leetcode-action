@@ -31,6 +31,49 @@ export function getTree(): TreeNode {
 }
 
 /**
+ * 将一个数组转换二叉树  这个方法来自于网络，待自己实现
+ * @param arr 
+ * @returns 
+ */
+export function genTreeFromArr(arr: number[]):TreeNode { 
+
+
+    let floor = 0, count = 0;
+  let treeNodes:TreeNode[] = []
+    while (arr != null && count < arr.length) {
+        let start = Math.pow(2, floor) - 1;
+        let end = Math.pow(2, floor + 1) - 1;
+        if (end > arr.length) {
+            end = arr.length;
+        }
+        for (let i = start; i < end; i++) {
+            if (arr[i] != null) {
+                treeNodes[i] = new TreeNode(arr[i]);
+            } else {
+                treeNodes[i] = new TreeNode();
+            }
+            if (i > 0) {
+                let parent = (i - 1) / 2;
+                if (parent >= 0) {
+                    let pNode = treeNodes[parent];
+                    if (pNode != null) {
+                        if (i % 2 == 1) {
+                            pNode.left = treeNodes[i];
+                        } else {
+                            pNode.right = treeNodes[i];
+                        }
+                    }
+                }
+            }
+            count++;
+        }
+        floor++;
+    }
+    return treeNodes[0];
+
+}
+
+/**
  * 返回一个链表的数组形式
  * @param listNode 完整的链表
  * @returns 链表的数组表现形式
